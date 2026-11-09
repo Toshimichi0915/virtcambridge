@@ -3,3 +3,5 @@
 /src/
 /pkg/
 /*.pkg.tar.*
+/virtcambridge-setup.exe
+/ffmpeg.exe

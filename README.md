@@ -37,10 +37,9 @@ Logs: `journalctl -u virtcambridge -f`. Devices: `v4l2-ctl --list-devices`.
 
 ## Guest
 
-Needs the IVSHMEM driver (already installed for Looking Glass). The installer finds
-ffmpeg (next to it, or on PATH) or installs it with winget, and copies it into the
-install folder. Copy `virtcambridge.exe`, `install.ps1` and `install.cmd` to the guest, then
-double-click `install.cmd` (it asks for admin; no execution-policy change needed).
-Uninstall from Settings > Apps > virtcambridge.
+Needs the IVSHMEM driver (already installed for Looking Glass). Build the installer with
+`make setup` (needs Docker) and run `virtcambridge-setup.exe` in the guest. To bundle
+ffmpeg, put `ffmpeg.exe` next to `virtcambridge.iss` before building; otherwise setup takes
+it from PATH or installs it with winget. Uninstall from Settings > Apps > virtcambridge.
 
 Log: `%TEMP%\virtcambridge.log`.
