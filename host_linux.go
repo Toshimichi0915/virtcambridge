@@ -178,9 +178,18 @@ func (c *cam) stop(why string) {
 	log.Printf("%q: closed /dev/video%d: %s", c.name, c.nr, why)
 	c.f.Close()
 	if err := removeDevice(c.nr); errors.Is(err, syscall.EBUSY) {
+		hide(c.nr)
 		pendingRemove = append(pendingRemove, c.nr) // an app still has it open
 	}
 	c.nr, c.f = -1, nil
+}
+
+// hide drops a device an app still holds open (e.g. a reader stuck waiting for frames)
+// out of camera lists until it can be removed: nobody else can open it, and the change
+// event makes PipeWire re-probe it and forget it.
+func hide(nr int) {
+	os.Chmod(fmt.Sprintf("/dev/video%d", nr), 0)
+	os.WriteFile(fmt.Sprintf("/sys/class/video4linux/video%d/uevent", nr), []byte("change"), 0)
 }
 
 func retryPending() {
