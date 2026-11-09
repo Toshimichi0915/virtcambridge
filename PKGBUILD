@@ -1,6 +1,6 @@
 # Builds the host daemon from this checkout: makepkg -si
 pkgname=virtcambridge
-pkgver=r5.6bc5680
+pkgver=r8.ca71d55
 pkgrel=1
 pkgdesc="Expose a Windows VM's virtual cameras on the host via ivshmem and v4l2loopback"
 arch=('x86_64')

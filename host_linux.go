@@ -11,6 +11,8 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"path/filepath"
+	"strings"
 	"sync/atomic"
 	"syscall"
 	"time"
@@ -57,6 +59,18 @@ func main() {
 	channels := flag.Int("channels", 4, "max guest cameras (only applied when the shared memory is (re)initialised)")
 	flag.Parse()
 	log.SetFlags(0) // journald timestamps
+
+	// Devices a previous run couldn't remove (open at exit) stay hidden forever otherwise:
+	// still listed by browsers, but unopenable, which they report as "permission denied".
+	sysNames, _ := filepath.Glob("/sys/class/video4linux/video*/name")
+	for _, p := range sysNames {
+		var nr int
+		if n, _ := os.ReadFile(p); strings.HasPrefix(string(n), "VM: ") {
+			fmt.Sscanf(filepath.Base(filepath.Dir(p)), "video%d", &nr)
+			hide(nr)
+			pendingRemove = append(pendingRemove, nr)
+		}
+	}
 
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGTERM, os.Interrupt)
