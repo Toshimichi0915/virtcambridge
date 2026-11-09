@@ -3,7 +3,7 @@ Description=virtcambridge: expose the VM's virtual cameras via v4l2loopback
 
 [Service]
 ExecStartPre=/usr/bin/modprobe v4l2loopback
-ExecStart=/usr/local/bin/virtcambridge
+ExecStart=/usr/bin/virtcambridge
 Restart=always
 RestartSec=2
 

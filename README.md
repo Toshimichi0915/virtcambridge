@@ -12,8 +12,12 @@ Physical cameras in the guest are left alone (they aren't registered DirectShow 
 
 ```sh
 sudo pacman -S --needed v4l2loopback-dkms linux-headers   # headers must match `uname -r`
-make && sudo make install
+makepkg -si
+sudo systemctl enable --now virtcambridge
 ```
+
+Update: `git pull && makepkg -si && sudo systemctl restart virtcambridge`.
+Uninstall: `sudo pacman -Rns virtcambridge`.
 
 Add a second ivshmem device to the VM (`virsh edit win11`, inside `<qemu:commandline>`,
 next to the Looking Glass one), then restart the VM:

@@ -1,2 +1,5 @@
 /virtcambridge
 /virtcambridge.exe
+/src/
+/pkg/
+/*.pkg.tar.*
