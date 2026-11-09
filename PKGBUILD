@@ -4,7 +4,7 @@ pkgver=r4.2a3d609
 pkgrel=1
 pkgdesc="Expose a Windows VM's virtual cameras on the host via ivshmem and v4l2loopback"
 arch=('x86_64')
-license=('MIT')
+license=('GPL-3.0-or-later')
 depends=('v4l2loopback-dkms')
 makedepends=('go' 'git')
 
