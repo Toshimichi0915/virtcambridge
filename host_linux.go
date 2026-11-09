@@ -53,7 +53,7 @@ type cam struct {
 var pendingRemove []int
 
 func main() {
-	shmPath := flag.String("shm", "/dev/shm/videobridge", "ivshmem backing file")
+	shmPath := flag.String("shm", "/dev/shm/virtcambridge", "ivshmem backing file")
 	channels := flag.Int("channels", 4, "max guest cameras (only applied when the shared memory is (re)initialised)")
 	flag.Parse()
 	log.SetFlags(0) // journald timestamps

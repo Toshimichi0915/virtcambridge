@@ -1,9 +1,9 @@
 [Unit]
-Description=videobridge: expose the VM's virtual cameras via v4l2loopback
+Description=virtcambridge: expose the VM's virtual cameras via v4l2loopback
 
 [Service]
 ExecStartPre=/usr/bin/modprobe v4l2loopback
-ExecStart=/usr/local/bin/videobridge
+ExecStart=/usr/local/bin/virtcambridge
 Restart=always
 RestartSec=2
 

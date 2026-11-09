@@ -1,3 +1,3 @@
-module videobridge
+module virtcambridge
 
 go 1.22

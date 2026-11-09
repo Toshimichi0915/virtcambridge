@@ -27,7 +27,7 @@ import (
 )
 
 const (
-	magic       = 0x31524256 // "VBR1"
+	magic       = 0x31424356 // "VCB1"
 	version     = 2
 	hdrSize     = 4096
 	nSlots      = 3

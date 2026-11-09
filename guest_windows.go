@@ -56,11 +56,11 @@ type stream struct {
 func main() {
 	ffmpeg := flag.String("ffmpeg", defaultFFmpeg(), "path to ffmpeg.exe")
 	flag.Parse()
-	if f, err := os.Create(filepath.Join(os.TempDir(), "videobridge.log")); err == nil {
+	if f, err := os.Create(filepath.Join(os.TempDir(), "virtcambridge.log")); err == nil {
 		log.SetOutput(f) // built with -H=windowsgui: no console
 	}
 
-	log.Print("looking for the videobridge ivshmem device")
+	log.Print("looking for the virtcambridge ivshmem device")
 	b := openShm()
 	for ; b == nil; b = openShm() {
 		time.Sleep(2 * time.Second)
