@@ -35,11 +35,8 @@ Logs: `journalctl -u videobridge -f`. Devices: `v4l2-ctl --list-devices`.
 
 Needs the IVSHMEM driver (already installed for Looking Glass). The installer finds
 ffmpeg (next to it, or on PATH) or installs it with winget, and copies it into the
-install folder. Copy `videobridge.exe` and `install.ps1` to the guest, then in an admin
-PowerShell:
-
-```powershell
-.\install.ps1
-```
+install folder. Copy `videobridge.exe`, `install.ps1` and `install.cmd` to the guest, then
+double-click `install.cmd` (it asks for admin; no execution-policy change needed).
+Uninstall from Settings > Apps > videobridge.
 
 Log: `%TEMP%\videobridge.log`.
